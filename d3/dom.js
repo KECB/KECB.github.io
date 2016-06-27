@@ -67,76 +67,132 @@
 //      .remove()
 // };
 
-var svg = d3.select("#graph")
+// var svg = d3.select("#graph")
+//   .append('svg')
+//   .style('width', 1024)
+//   .style('height', 768);
+
+// svg.append('text')
+//   .text('A picture!')
+//   .attr({
+//     x: 10,
+//     y: 150,
+//     'text-anchor': 'start'
+//   });
+
+// svg.append('line')
+//   .attr({
+//     x1: 10,
+//     y1: 10,
+//     x2: 100,
+//     y2: 100,
+//     stroke: 'blue',
+//     'stroke-width': 3
+//   });
+
+// svg.append('rect')
+//   .attr({
+//     x: 200,
+//     y: 100,
+//     width: 300,
+//     height: 300
+//   });
+
+// svg.select('rect')
+//   .attr({
+//     stroke: 'green',
+//     'stroke-width': 0.5,
+//     fill: 'white',
+//     rx: 10,
+//     ry:10
+//   });
+
+// svg.append('circle')
+//   .attr({
+//     cx: 350,
+//     cy: 250,
+//     r: 100,
+//     fill: 'green',
+//     'fill-opacity': 0.5,
+//     stroke: 'steelblue',
+//     'stroke-width': 2
+//   });
+
+// svg.append('ellipse')
+//   .attr({
+//     cx: 350,
+//     cy: 250,
+//     rx: 150,
+//     ry: 70,
+//     fill: 'green',
+//     'fill-opacity': 0.3,
+//     stroke: 'steelblue',
+//     'stoke-width': 0.7
+//   });
+
+// svg.append('ellipse')
+//   .attr({
+//     cx: 350,
+//     cy: 250,
+//     rx: 20,
+//     ry: 70,
+//   });
+
+// svg.selectAll('ellipse, circle')
+//   .attr('transform', 'translate(150, 0) scale(1.2) translate(-50, -50) rotate(-45, 350, 250) skewX(10)');
+
+// svg.append('path')
+//   .attr({
+//     d: 'M 100 100 L 300 100 L 200 300 z',
+//     stroke: 'black',
+//     'stroke-width': 2,
+//     fill: 'red',
+//     'fill-opacity': 0.7
+//   });
+
+var width = 1024,
+  height = 768,
+  margin = 10;
+
+var svg = d3.select('#graph')
   .append('svg')
-  .style('width', 1024)
-  .style('height', 768);
+  .attr('width', width+2*margin)
+  .attr('height', height+2*margin);
 
-svg.append('text')
-  .text('A picture!')
-  .attr({
-    x: 10,
-    y: 150,
-    'text-anchor': 'start'
-  });
+var g = svg.append('g')
+  .attr('transform', 'translate('+margin+', '+margin+')');
 
-svg.append('line')
-  .attr({
-    x1: 10,
-    y1: 10,
-    x2: 100,
-    y2: 100,
-    stroke: 'blue',
-    'stroke-width': 3
-  });
+var sine = d3.range(0, 10).map(
+  function (k) {
+    return [0.5 * k * Math.PI, Math.sin(0.5 * k * Math.PI)];
+  }
+);
 
-svg.append('rect')
-  .attr({
-    x: 200,
-    y: 100,
-    width: 300,
-    height: 300
-  });
+var x = d3.scale.linear()
+  .range([0, width / 2 - margin])
+  .domain(d3.extent(sine, function (d) { return d[0]; })),
+  y = d3.scale.linear().range([ height / 2 - margin, 0]).domain([-1, 1]);
 
-svg.select('rect')
-  .attr({
-    stroke: 'green',
-    'stroke-width': 0.5,
-    fill: 'white',
-    rx: 10,
-    ry:10
-  });
+var line = d3.svg.line()
+  .x(function (d) {
+    return x(d[0]);
+  })
+  .y(function (d) {
+    return y(d[1]);
+  })
 
-svg.append('circle')
+g.append('path')
+  .datum(sine)
+  .attr('d', line)
   .attr({
-    cx: 350,
-    cy: 250,
-    r: 100,
-    fill: 'green',
-    'fill-opacity': 0.5,
     stroke: 'steelblue',
-    'stroke-width': 2
+    'stroke-width': 2,
+    fill: 'none'
   });
 
-svg.append('ellipse')
-  .attr({
-    cx: 350,
-    cy: 250,
-    rx: 150,
-    ry: 70,
-    fill: 'green',
-    'fill-opacity': 0.3,
-    stroke: 'steelblue',
-    'stoke-width': 0.7
-  });
-
-svg.append('ellipse')
-  .attr({
-    cx: 350,
-    cy: 250,
-    rx: 20,
-    ry: 70,
-  });
-
-svg.selectAll('ellipse, circle')
-  .attr('transform', 'translate(150, 0) scale(1.2) translate(-50, -50) rotate(-45, 350, 250) skewX(10)');
+g.append('path')
+  .datum(sine)
+	.attr("d", line.interpolate('step-before'))
+  .attr({stroke: 'black',
+  'stroke-width': 1,
+  fill: 'none'});
