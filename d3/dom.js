@@ -196,3 +196,33 @@ g.append('path')
   .attr({stroke: 'black',
   'stroke-width': 1,
   fill: 'none'});
+
+var g2 = svg.append('g')
+     .attr('transform', 'translate('+(width/2+margin)+', '+margin+')');
+
+var area = d3.svg.area()
+  .x(function (d) {
+    return x(d[0]);
+  })
+  .y0(height /2 )
+  .y1(function (d) {
+    return y(d[1]);
+  })
+  .interpolate('basis');
+
+g2.append('path')
+  .datum(sine)
+  .attr('d', area)
+  .attr({
+    fill: 'steelblue',
+    'fill-opacity': 0.4
+  });
+
+g2.append('path')
+  .datum(sine)
+  .attr('d', line.interpolate('basis'))
+  .attr({
+    stroke: 'steelblue',
+    'stoke-width': 2,
+    fill: 'none'
+  });
