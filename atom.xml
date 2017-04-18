@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[ilife.co]]></title>
+  <link href="www.ilife.co/atom.xml" rel="self"/>
+  <link href="www.ilife.co/"/>
+  <updated>2017-04-13T09:39:49+08:00</updated>
+  <id>www.ilife.co/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 1]]></title>
+    <link href="www.ilife.co/14920475275319.html"/>
+    <updated>2017-04-13T09:38:47+08:00</updated>
+    <id>www.ilife.co/14920475275319.html</id>
+    <content type="html"><![CDATA[
+
+]]></content>
+  </entry>
+  
+</feed>
