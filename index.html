@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  ilife.co
+  ilife
   
   </title>
   
   
-  <link href="atom.xml" rel="alternate" title="ilife.co" type="application/atom+xml">
+  <link href="atom.xml" rel="alternate" title="ilife" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
     <script src="asset/js/vendor/modernizr.js"></script>
@@ -62,7 +62,7 @@
 
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
-    <span> &nbsp; ilife.co</span>
+    <span> &nbsp; ilife</span>
   </a>
 </nav>
 
@@ -76,7 +76,7 @@
     <li><label>Categories</label></li>
 
         
-            <li><a href="100Day.html">100Day</a></li>
+            <li><a href="100DaysOfCode.html">100DaysOfCode</a></li>
          
 
       </ul>
@@ -99,14 +99,111 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
-                <a class="clearlink" href="14920475275319.html">
+                <a class="clearlink" href="14929392382338.html">
                 
                   <h1>Day 1</h1>
                   <div class="a-content">
                       
                       <div class="a-content-text">
                         
-                        	
+                        	<h2 id="toc_0">RxJava</h2>
+
+<blockquote>
+<p>The Observer pattern done right. ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming.      — ractivex.io</p>
+</blockquote>
+
+<p>Upon  this, it&#39;s obvious that we should first familiar the Observer pattern, the Iterator pattern and the functional programming. I think I&#39;ll cover these three part later. </p>
+
+<p>The Java version of this concept is called RxJava, which hosted on Github <a href="https://github.com/ReactiveX/RxJava">RxJava</a></p>
+
+<h2 id="toc_1">Main Concept</h2>
+
+<ul>
+<li><strong>Observables</strong> Representing sources of data. </li>
+<li><strong>Subscribers (Observers)</strong> Listening to the Observables. </li>
+<li>a set of methods for modifying and composing the data</li>
+</ul>
+
+<p>Some advantages of RxJava:<br/>
+* You can chain async operations, e.g. if a API call depends on the call of another API<br/>
+* A defined way to handle errors<br/>
+* It reduces the need fro state variables, which can be the source of errors == Creating sources, subscribing to them and disposing them</p>
+
+<h2 id="toc_2">Creating sources to observe</h2>
+
+<p>Observables are the sources for the data. Usually they start providing data once a subscriber starts listening. They can produce an empty, a single or multiple items. They can terminate with an error or success. Sources may never terminate, e.g., a observable for a button click can potentially produce an infinite stream of events. </p>
+
+<p><em>Table 1. Table Observable types</em></p>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Flowable<T></td>
+<td>Emits 0 or n items and terminates with complete or an error. Supports backpressure, which allows to control how fast a source emits items.</td>
+</tr>
+<tr>
+<td>Observable<T></td>
+<td>Emits 0 or n items and terminates with complete or an error.</td>
+</tr>
+<tr>
+<td>Single<T></td>
+<td>Emits either a single item or an error. The reactive version of a <code>method call</code>. you subscribe to a Single and you get either a return value or an error.</td>
+</tr>
+<tr>
+<td>Maybe<T></td>
+<td>Succeeds with an item, or no item, or errors. The reactive version of an <code>Optional</code>.</td>
+</tr>
+<tr>
+<td>Completeable</td>
+<td>Either completes or returns an error. It never return items. The reactive version of a <code>Runnable</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>An example for the usage of <code>backpressure</code> is when you process <code>touch events</code>. You cannot control the user who is doing these touch events, but you can tell the source to emit the events on a slower rate in case you cannot processes them at the rate the user produces them. This has been designed for the support fro reactive streams. Only <code>Flowable</code> supports backpressure.</p>
+
+<pre><code class="language-java">Observable&lt;Interger&gt; observable = Observable.create(new ObserverableOnSubscribe&lt;Integer&gt;(){
+    @Override
+    public void subscribe(@NonNull ObservableEmitter&lt;Integer&gt; observableEmitter) throws Exception {
+        observableEmitter.onNext(1);
+        observableEmitter.onNext(2);
+        observableEmitter.onNext(3);
+        observableEmitter.onComplete();
+    }
+});
+
+Observer&lt;Integer&gt; observer = new Observer&lt;Integer&gt;() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                System.out.println(&quot;On Subscribe&quot;);
+            }
+
+            @Override
+            public void onNext(Integer value) {
+                System.out.println(&quot;On Next&quot; + value);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                System.out.println(&quot;On Error&quot;);
+            }
+
+            @Override
+            public void onComplete() {
+                System.out.println(&quot;On Complete&quot;);
+            }
+        };
+
+        observable.subscribe(observer);
+</code></pre>
+
                         
                       </div>
                   </div>
@@ -114,10 +211,10 @@
                 <div class="read-more clearfix">
                   <div class="more-left left">
                   
-                    <span class="date">2017/4/13 9:38 AM</span>
+                    <span class="date">2017/4/23</span>
                     <span>posted in&nbsp;</span> 
           				  
-          					    <span class="posted-in"><a href='100Day.html'>100Day</a></span>
+          					    <span class="posted-in"><a href='100DaysOfCode.html'>100DaysOfCode</a></span>
           				   
                   </div>
                   <div class="more-right right">
@@ -153,7 +250,7 @@
     <div id="sidebar" class="sidebar">
           <div id="site-info" class="site-info">
             
-                <h1>ilife.co</h1>
+                <h1>ilife</h1>
                 <div class="site-des"></div>
                 <div class="social">
 
@@ -182,7 +279,7 @@
 
       	<p class="cat-list">
         
-            <a href="100Day.html"><strong>100Day</strong></a>
+            <a href="100DaysOfCode.html"><strong>100DaysOfCode</strong></a>
          
         </p>
 
@@ -199,7 +296,7 @@
 	      
 		      
 			      <li class="post">
-			        <a href="14920475275319.html">Day 1</a>
+			        <a href="14929392382338.html">Day 1</a>
 			      </li>
 		     
 		   
@@ -244,8 +341,8 @@ Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
      
     </script>
 
-    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+    
+
 
 
   </body>
