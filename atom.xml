@@ -4,13 +4,70 @@
   <title><![CDATA[ilife]]></title>
   <link href="www.ilife.co/atom.xml" rel="self"/>
   <link href="www.ilife.co/"/>
-  <updated>2017-04-23T17:21:43+08:00</updated>
+  <updated>2017-04-23T17:22:37+08:00</updated>
   <id>www.ilife.co/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 2]]></title>
+    <link href="www.ilife.co/14931140045313.html"/>
+    <updated>2017-04-25T17:53:24+08:00</updated>
+    <id>www.ilife.co/14931140045313.html</id>
+    <content type="html"><![CDATA[
+<p>Try to implement Decimal to Hex.</p>
+
+<pre><code class="language-java">
+public static void main(String[] args) {
+   int n = 4123;
+
+   int power = 1;
+   while (power &lt;= (n / 16)) {
+       power *= 16;
+   }
+
+   while (power &gt; 0) {
+       if (n &gt;= power) {
+           hexOutput(n, power);
+           n = n - power;
+       }else {
+           hexOutput(n, power);
+       }
+       power = power / 16;
+   }
+}
+
+private static void hexOutput(int n, int power) {
+   switch (n / power) {
+       case 15:
+           System.out.println(&quot;F&quot;);
+           break;
+       case 14:
+           System.out.println(&quot;E&quot;);
+           break;
+       case 13:
+           System.out.println(&quot;D&quot;);
+           break;
+       case 12:
+           System.out.println(&quot;C&quot;);
+           break;
+       case 11:
+           System.out.println(&quot;B&quot;);
+           break;
+       case 10:
+           System.out.println(&quot;A&quot;);
+           break;
+       default:
+           System.out.println(n / power);
+   }
+}
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 1]]></title>

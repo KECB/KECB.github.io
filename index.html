@@ -99,6 +99,85 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="14931140045313.html">
+                
+                  <h1>Day 2</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>Try to implement Decimal to Hex.</p>
+
+<pre><code class="language-java">
+public static void main(String[] args) {
+   int n = 4123;
+
+   int power = 1;
+   while (power &lt;= (n / 16)) {
+       power *= 16;
+   }
+
+   while (power &gt; 0) {
+       if (n &gt;= power) {
+           hexOutput(n, power);
+           n = n - power;
+       }else {
+           hexOutput(n, power);
+       }
+       power = power / 16;
+   }
+}
+
+private static void hexOutput(int n, int power) {
+   switch (n / power) {
+       case 15:
+           System.out.println(&quot;F&quot;);
+           break;
+       case 14:
+           System.out.println(&quot;E&quot;);
+           break;
+       case 13:
+           System.out.println(&quot;D&quot;);
+           break;
+       case 12:
+           System.out.println(&quot;C&quot;);
+           break;
+       case 11:
+           System.out.println(&quot;B&quot;);
+           break;
+       case 10:
+           System.out.println(&quot;A&quot;);
+           break;
+       default:
+           System.out.println(n / power);
+   }
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/4/25</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='100DaysOfCode.html'>100DaysOfCode</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="14929392382338.html">
                 
                   <h1>Day 1</h1>
@@ -294,6 +373,12 @@ Observer&lt;Integer&gt; observer = new Observer&lt;Integer&gt;() {
                 <div class="side-content">
                 <ul class="posts-list">
 	      
+		      
+			      <li class="post">
+			        <a href="14931140045313.html">Day 2</a>
+			      </li>
+		     
+		  
 		      
 			      <li class="post">
 			        <a href="14929392382338.html">Day 1</a>

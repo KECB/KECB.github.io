@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Archives - ilife
+  Day 2 - ilife
   
   </title>
   
@@ -91,50 +91,116 @@
 
  <script type="text/javascript">
   $(function(){
-    $('#menu_item_archives').addClass('is_active');
+    $('#menu_item_index').addClass('is_active');
   });
 </script>
 <div class="row">
   <div class="large-8 medium-8 columns">
-    <div id="archives-page-wrap">
-        <h1>Archives</h1>
-        <div class="markdown-body archives-wrap">
+      <div class="markdown-body article-wrap">
+       <div class="article">
           
-             
-                <h1>2017</h1>
-            
-            <div class="article">
-              <a class="clearlink" href="14931140045313.html">
-                <h1>Day 2</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2017/4/25</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='100DaysOfCode.html'>100DaysOfCode</a></span>
-                 
-              </div>
-            </div><!-- article -->
+          <h1>Day 2</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/4/25</span>
 
+          <span>posted in&nbsp;</span> 
           
-            
-            <div class="article">
-              <a class="clearlink" href="14929392382338.html">
-                <h1>Day 1</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2017/4/23</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='100DaysOfCode.html'>100DaysOfCode</a></span>
-                 
-              </div>
-            </div><!-- article -->
-
+              <span class="posted-in"><a href='100DaysOfCode.html'>100DaysOfCode</a></span>
            
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>Try to implement Decimal to Hex.</p>
+
+<pre><code class="language-java">
+public static void main(String[] args) {
+   int n = 4123;
+
+   int power = 1;
+   while (power &lt;= (n / 16)) {
+       power *= 16;
+   }
+
+   while (power &gt; 0) {
+       if (n &gt;= power) {
+           hexOutput(n, power);
+           n = n - power;
+       }else {
+           hexOutput(n, power);
+       }
+       power = power / 16;
+   }
+}
+
+private static void hexOutput(int n, int power) {
+   switch (n / power) {
+       case 15:
+           System.out.println(&quot;F&quot;);
+           break;
+       case 14:
+           System.out.println(&quot;E&quot;);
+           break;
+       case 13:
+           System.out.println(&quot;D&quot;);
+           break;
+       case 12:
+           System.out.println(&quot;C&quot;);
+           break;
+       case 11:
+           System.out.println(&quot;B&quot;);
+           break;
+       case 10:
+           System.out.println(&quot;A&quot;);
+           break;
+       default:
+           System.out.println(n / power);
+   }
+}
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14929392382338.html" 
+          title="Next Post: Day 1">Day 1 &raquo;</a>
+      
+      </p>
         </div>
       </div>
-  </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
