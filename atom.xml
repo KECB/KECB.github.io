@@ -4,7 +4,7 @@
   <title><![CDATA[ilife]]></title>
   <link href="www.ilife.co/atom.xml" rel="self"/>
   <link href="www.ilife.co/"/>
-  <updated>2017-04-25T21:24:23+08:00</updated>
+  <updated>2017-05-04T17:13:50+08:00</updated>
   <id>www.ilife.co/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -48,6 +48,8 @@ cd tools
 mv platforms android-sdk 
 mv tools android-sdk 
 mv build-tools android-sdk 
+# give Jenkins permission to reach android-sdk
+chmod -R 777 /opt/android-sdk
 # Set environment variables
 vim /etc/profile.d/android.sh
 # In vim editor input following text
@@ -58,7 +60,12 @@ vim /etc/profile.d/android.sh
 source /etc/profile
 </code></pre>
 
-<h4 id="toc_3">Configuring the Android SDK</h4>
+<h4 id="toc_3">Configuring the JDK</h4>
+
+<p><em>Manage Jenkins</em> -&gt; <em>Global Tool Configuration</em><br/>
+<img src="media/14938636429090/14938889651545.jpg" alt=""/></p>
+
+<h4 id="toc_4">Configuring the Android SDK</h4>
 
 <p>To build your project, the Android SDK will need a few packages. First, update the SDK itself(a few licenses will need to be accepted):</p>
 
@@ -73,7 +80,7 @@ android update sdk --no-ui
   platform-tools       | 25.0.5  | Android SDK Platform-Tools     | platform-tools/
 </code></pre>
 
-<h4 id="toc_4">Configure Gradle plugin</h4>
+<h4 id="toc_5">Configure Gradle plugin</h4>
 
 <p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin">Ref</a><br/>
 <em>Must configure this, or you may get a &#39;Cannot run program “gradle” in Jenkins&#39; error</em><br/>
@@ -82,6 +89,18 @@ In the ** Global Tool Configuration.** <br/>
 
 <p>Or can manually download and configure it. <br/>
 <img src="media/14938636429090/14938816607621.jpg" alt=""/></p>
+
+<h3 id="toc_6">Jenkins Item setting</h3>
+
+<p>Using wrapper. The <code>**/*.apk</code> part make sure we can get the build result.</p>
+
+<p><img src="media/14938636429090/14938891045380.jpg" alt=""/></p>
+
+<h3 id="toc_7">Other things should be careful</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/38096225/automatically-accept-all-sdk-licences/38381577">How to accept SDK licences</a></li>
+</ul>
 
 ]]></content>
   </entry>
