@@ -4,13 +4,87 @@
   <title><![CDATA[ilife]]></title>
   <link href="www.ilife.co/atom.xml" rel="self"/>
   <link href="www.ilife.co/"/>
-  <updated>2017-04-23T17:22:37+08:00</updated>
+  <updated>2017-04-25T21:24:23+08:00</updated>
   <id>www.ilife.co/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 3]]></title>
+    <link href="www.ilife.co/14938636429090.html"/>
+    <updated>2017-05-04T10:07:22+08:00</updated>
+    <id>www.ilife.co/14938636429090.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">Android with Jenkins</h2>
+
+<p>Trying to develop project using CI just cause I think it&#39;s a better way to maintain or tracking project progress.</p>
+
+<h3 id="toc_1">Instal Jenkins</h3>
+
+<p>Just follow the official documentations.</p>
+
+<h3 id="toc_2">Prepare Android Build Environment</h3>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-build-android-apps-with-jenkins">Ref</a></p>
+
+<pre><code class="language-shell">cd /opt
+# Download SDK tools
+wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+# Uncompress it
+unzip sdk-tools-linux-3859397.zip
+# delete it
+rm -rf sdk-tools-linux-3859397.zip
+# goto tools folder
+cd tools
+# List installed and available packages
+./sdkmanager --list
+# Install packages
+./sdkmanager &quot;platforms;android-25&quot;
+./sdkmanager &quot;build-tools;25.0.2&quot;
+# move platforms tools build-tools to one folder
+mv platforms android-sdk 
+mv tools android-sdk 
+mv build-tools android-sdk 
+# Set environment variables
+vim /etc/profile.d/android.sh
+# In vim editor input following text
+# export ANDROID_HOME=&quot;/opt/android-sdk&quot;
+# export PATH=&quot;$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH&quot;
+# then save
+# Reload and activate the variables
+source /etc/profile
+</code></pre>
+
+<h4 id="toc_3">Configuring the Android SDK</h4>
+
+<p>To build your project, the Android SDK will need a few packages. First, update the SDK itself(a few licenses will need to be accepted):</p>
+
+<pre><code class="language-shell"># Now android has been deprecated, should use sdkmanager/avdmanager instead.
+android update sdk --no-ui
+</code></pre>
+
+<p>This will install : </p>
+
+<pre><code>  emulator             | 26.0.0  | Android Emulator               | emulator/
+  patcher;v4           | 1       | SDK Patch Applier v4           | patcher/v4/
+  platform-tools       | 25.0.5  | Android SDK Platform-Tools     | platform-tools/
+</code></pre>
+
+<h4 id="toc_4">Configure Gradle plugin</h4>
+
+<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin">Ref</a><br/>
+<em>Must configure this, or you may get a &#39;Cannot run program “gradle” in Jenkins&#39; error</em><br/>
+In the ** Global Tool Configuration.** <br/>
+<img src="media/14938636429090/14938764037563.jpg" alt=""/></p>
+
+<p>Or can manually download and configure it. <br/>
+<img src="media/14938636429090/14938816607621.jpg" alt=""/></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 2]]></title>
