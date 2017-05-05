@@ -4,13 +4,83 @@
   <title><![CDATA[ilife]]></title>
   <link href="www.ilife.co/atom.xml" rel="self"/>
   <link href="www.ilife.co/"/>
-  <updated>2017-05-04T17:13:50+08:00</updated>
+  <updated>2017-05-04T17:15:26+08:00</updated>
   <id>www.ilife.co/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 4]]></title>
+    <link href="www.ilife.co/14939091658025.html"/>
+    <updated>2017-05-04T22:46:05+08:00</updated>
+    <id>www.ilife.co/14939091658025.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">Learning play with Ubuntu server(16.04)</h2>
+
+<p>Now I decide to deploy two website on my Ubuntu server. So first I should configure the apache2 to make it happens.</p>
+
+<h3 id="toc_1">Configure apache2</h3>
+
+<p>Useful command</p>
+
+<pre><code class="language-shell"># check apache setting 
+apache2ctl configtest
+# start restart stop apache server
+service apache2 start | restart | stop
+</code></pre>
+
+<p>Apache2 conf</p>
+
+<pre><code class="language-shell">&lt;VirtualHost *:80&gt;
+    ServerAdmin ***@***.com
+    ServerName ***.com
+    ServerAlias www.***.com
+    DocumentRoot /var/www/***
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<h3 id="toc_2">Install &amp; Congifuring MySQL</h3>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04">Ref</a></p>
+
+<p><strong>Install script</strong></p>
+
+<pre><code class="language-shell">sudo apt-get update
+sudo apt-get install mysql-server
+</code></pre>
+
+<p><strong>Configuring MySQL</strong></p>
+
+<pre><code class="language-shell">sudo mysql_secure_installation
+</code></pre>
+
+<p><strong>Enable Remote Access</strong></p>
+
+<pre><code class="language-shell">vim /etc/mysql/mysql.conf.d/mysqld.cnf
+# comment the following line
+# bind-address          = 127.0.0.1 
+# Save the file. 
+# restart service
+service mysql restart
+</code></pre>
+
+<p><strong>Other Useful command</strong></p>
+
+<pre><code class="language-shell"># login
+mysql -u root -p
+# test 
+systemctl status mysql.service
+mysqladmin -p -u root version
+# see port state
+netstat -an | grep 3306
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 3]]></title>

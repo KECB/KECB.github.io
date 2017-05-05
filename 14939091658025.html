@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Day 3 - ilife
+  Day 4 - ilife
   
   </title>
   
@@ -99,14 +99,12 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Day 3</h1>
+          <h1>Day 4</h1>
      
         <div class="read-more clearfix">
           <span class="date">2017/5/4</span>
 
-          <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='100DaysOfCode.html'>100DaysOfCode</a></span>
            
          
           <span class="comments">
@@ -119,89 +117,66 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h2 id="toc_0">Android with Jenkins</h2>
+      <h2 id="toc_0">Learning play with Ubuntu server(16.04)</h2>
 
-<p>Trying to develop project using CI just cause I think it&#39;s a better way to maintain or tracking project progress.</p>
+<p>Now I decide to deploy two website on my Ubuntu server. So first I should configure the apache2 to make it happens.</p>
 
-<h3 id="toc_1">Instal Jenkins</h3>
+<h3 id="toc_1">Configure apache2</h3>
 
-<p>Just follow the official documentations.</p>
+<p>Useful command</p>
 
-<h3 id="toc_2">Prepare Android Build Environment</h3>
-
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-build-android-apps-with-jenkins">Ref</a></p>
-
-<pre><code class="language-shell">cd /opt
-# Download SDK tools
-wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
-# Uncompress it
-unzip sdk-tools-linux-3859397.zip
-# delete it
-rm -rf sdk-tools-linux-3859397.zip
-# goto tools folder
-cd tools
-# List installed and available packages
-./sdkmanager --list
-# Install packages
-./sdkmanager &quot;platforms;android-25&quot;
-./sdkmanager &quot;build-tools;25.0.2&quot;
-# move platforms tools build-tools to one folder
-mv platforms android-sdk 
-mv tools android-sdk 
-mv build-tools android-sdk 
-# give Jenkins permission to reach android-sdk
-chmod -R 777 /opt/android-sdk
-# Set environment variables
-vim /etc/profile.d/android.sh
-# In vim editor input following text
-# export ANDROID_HOME=&quot;/opt/android-sdk&quot;
-# export PATH=&quot;$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH&quot;
-# then save
-# Reload and activate the variables
-source /etc/profile
+<pre><code class="language-shell"># check apache setting 
+apache2ctl configtest
+# start restart stop apache server
+service apache2 start | restart | stop
 </code></pre>
 
-<h4 id="toc_3">Configuring the JDK</h4>
+<p>Apache2 conf</p>
 
-<p><em>Manage Jenkins</em> -&gt; <em>Global Tool Configuration</em><br/>
-<img src="media/14938636429090/14938889651545.jpg" alt=""/></p>
-
-<h4 id="toc_4">Configuring the Android SDK</h4>
-
-<p>To build your project, the Android SDK will need a few packages. First, update the SDK itself(a few licenses will need to be accepted):</p>
-
-<pre><code class="language-shell"># Now android has been deprecated, should use sdkmanager/avdmanager instead.
-android update sdk --no-ui
+<pre><code class="language-shell">&lt;VirtualHost *:80&gt;
+    ServerAdmin ***@***.com
+    ServerName ***.com
+    ServerAlias www.***.com
+    DocumentRoot /var/www/***
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+&lt;/VirtualHost&gt;
 </code></pre>
 
-<p>This will install : </p>
+<h3 id="toc_2">Install &amp; Congifuring MySQL</h3>
 
-<pre><code>  emulator             | 26.0.0  | Android Emulator               | emulator/
-  patcher;v4           | 1       | SDK Patch Applier v4           | patcher/v4/
-  platform-tools       | 25.0.5  | Android SDK Platform-Tools     | platform-tools/
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04">Ref</a></p>
+
+<p><strong>Install script</strong></p>
+
+<pre><code class="language-shell">sudo apt-get update
+sudo apt-get install mysql-server
 </code></pre>
 
-<h4 id="toc_5">Configure Gradle plugin</h4>
+<p><strong>Configuring MySQL</strong></p>
 
-<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin">Ref</a><br/>
-<em>Must configure this, or you may get a &#39;Cannot run program “gradle” in Jenkins&#39; error</em><br/>
-In the ** Global Tool Configuration.** <br/>
-<img src="media/14938636429090/14938764037563.jpg" alt=""/></p>
+<pre><code class="language-shell">sudo mysql_secure_installation
+</code></pre>
 
-<p>Or can manually download and configure it. <br/>
-<img src="media/14938636429090/14938816607621.jpg" alt=""/></p>
+<p><strong>Enable Remote Access</strong></p>
 
-<h3 id="toc_6">Jenkins Item setting</h3>
+<pre><code class="language-shell">vim /etc/mysql/mysql.conf.d/mysqld.cnf
+# comment the following line
+# bind-address          = 127.0.0.1 
+# Save the file. 
+# restart service
+service mysql restart
+</code></pre>
 
-<p>Using wrapper. The <code>**/*.apk</code> part make sure we can get the build result.</p>
+<p><strong>Other Useful command</strong></p>
 
-<p><img src="media/14938636429090/14938891045380.jpg" alt=""/></p>
-
-<h3 id="toc_7">Other things should be careful</h3>
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/38096225/automatically-accept-all-sdk-licences/38381577">How to accept SDK licences</a></li>
-</ul>
+<pre><code class="language-shell"># login
+mysql -u root -p
+# test 
+systemctl status mysql.service
+mysqladmin -p -u root version
+# see port state
+netstat -an | grep 3306
+</code></pre>
 
 
     
@@ -212,16 +187,13 @@ In the ** Global Tool Configuration.** <br/>
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="14939091658025.html" 
-          title="Previous Post: Day 4">&laquo; Day 4</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="14931140045313.html" 
-          title="Next Post: Day 2">Day 2 &raquo;</a>
+          <a  href="14938636429090.html" 
+          title="Next Post: Day 3">Day 3 &raquo;</a>
       
       </p>
         </div>
