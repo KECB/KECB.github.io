@@ -4,13 +4,40 @@
   <title><![CDATA[ilife]]></title>
   <link href="www.ilife.co/atom.xml" rel="self"/>
   <link href="www.ilife.co/"/>
-  <updated>2017-05-04T17:15:26+08:00</updated>
+  <updated>2017-05-05T13:09:35+08:00</updated>
   <id>www.ilife.co/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 5]]></title>
+    <link href="www.ilife.co/14942273079219.html"/>
+    <updated>2017-05-08T15:08:27+08:00</updated>
+    <id>www.ilife.co/14942273079219.html</id>
+    <content type="html"><![CDATA[
+<p>From today I wanna focus on play with data. And I choose python. </p>
+
+<p><img src="media/14942273079219/14944015699868.png" alt=""/></p>
+
+<p><a href="http://www.python-course.eu/numpy.php">image from python-course.eu</a><br/>
+As the image shows, I choose to learn Numpy, Matplotlib and Pandas first. Then the Scipy.</p>
+
+<p><strong>Numpy</strong>  Numpy is the core library for scientific computing in Python</p>
+
+<p><strong>Pandas</strong> Based on Numpy, the key object is Series, DataFrame.</p>
+
+<p><strong>Matplotlib</strong> For data visualization.</p>
+
+<p><strong>Scipy</strong> Numpy provides a high-performance multidimensional array and basic tools to compute with and manipulate these arrays. SciPy builds on this, and provides a large number of functions that operate on numpy arrays and are useful for different types of scientific and engineering applications.</p>
+
+<p>Great reference website <a href="https://docs.scipy.org/">scipy.org</a><br/>
+<em>PS: try to dive into a real project, play and manipulate stock data.</em></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 4]]></title>
